@@ -1,13 +1,38 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import Navbar from '@/components/Navbar';
+import CurrentWeather from '@/components/CurrentWeather';
+import Forecast from '@/components/Forecast';
+import { Search } from '@/components/SearchLocation';
+import { WeatherProvider } from '@/hooks/useWeather';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <WeatherProvider>
+      <div className="min-h-screen flex flex-col bg-background">
+        <Navbar />
+        
+        <main className="container mx-auto px-4 py-6 flex-1">
+          <div className="md:hidden mb-6">
+            <Search />
+          </div>
+          
+          <section className="mb-8">
+            <CurrentWeather />
+          </section>
+          
+          <section>
+            <Forecast />
+          </section>
+        </main>
+        
+        <footer className="bg-primary/10 py-4 mt-auto">
+          <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
+            <p>© {new Date().getFullYear()} WeatherCast - Weather Forecast Service</p>
+          </div>
+        </footer>
       </div>
-    </div>
+    </WeatherProvider>
   );
 };
 
